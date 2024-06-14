@@ -9,8 +9,6 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/simple.css">
-
-		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
 		<style>
@@ -40,16 +38,15 @@
 			a {
 				color: blue !important;
 			}
-.reveal-viewport {
-  background: #add9e4;
-  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
-  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  /* background-color: var(--r-background-color); */
-}
+			.reveal-viewport {
+				background: #add9e4;
+				background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+				background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
+				background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+				background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+				background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+				background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+			}
 		</style>
 	</head>
 	<body>
@@ -1011,7 +1008,7 @@
 
 					<section>
 						<div class="r-stack">
-							<img class="" src="images/snapshot-dark.png" height="500">
+							<img src="images/snapshot-dark.png" height="500">
 							<img class="fragment current-visible" src="images/snapshot-light.png" height="500">
 							<img class="fragment current-visible" src="images/snapshot-muted.png" height="500">
 							<img class="fragment current-visible" src="images/snapshot-satellite.png" height="500">
@@ -1052,6 +1049,11 @@
 						Email<br>
 						<a href="mailto:seb@sebduggan.com">seb@sebduggan.com</a>
 					</p>
+					<p>
+						<br>
+						Slide deck<br>
+						<a href="https://cfcamp2024.sebduggan.uk">https://cfcamp2024.sebduggan.uk</a>
+					</p>
 				</section>
 
 			</section>
@@ -1062,17 +1064,12 @@
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
 		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
 			Reveal.initialize({
-				hash: true,
-				center: false,
-				progress: false,
-				controls: false,
-
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				hash     : true,
+				center   : false,
+				// progress : false,
+				// controls : false,
+				plugins  : [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 		</script>
 	</body>
