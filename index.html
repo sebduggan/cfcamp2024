@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CFCamp 2024</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/simple.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			:root {
+				--r-main-font-size: 36px;
+				--r-block-margin: 18px;
+				--r-heading-font-weight: bold;
+				--r-heading-margin: 0 0 40px 0;
+				--r-heading-font: -apple-system,sans-serif;
+				--r-main-font: -apple-system,sans-serif;
+			}
+			video {
+				box-shadow: 0 0 30px rgba(0,0,0,0.4);
+			}
+			.stack-top {
+				margin-top : 0 !important;
+			}
+			.reveal pre code {
+				max-height: 497px;
+			}
+			.li-bottom-50 li {
+				margin-bottom: .5em;
+			}
+			.li-bottom-75 li {
+				margin-bottom: .75em;
+			}
+			a {
+				color: blue !important;
+			}
+.reveal-viewport {
+  background: #add9e4;
+  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
+  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+  background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+  /* background-color: var(--r-background-color); */
+}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="center" data-background-image="images/background.png">
+					<h2>Apple MapKit JS</h2>
+
+					<img src="images/apple-logo.png" height="150">
+
+					<h3>Map Different.</h3>
+					<h5><br>Seb Duggan // CFCamp 2024</h5>
+				</section>
+
+				<section>
+					<h3>About Seb</h3>
+
+					<ul class="li-bottom-50">
+						<li class="fragment">Building websites since 1994</li>
+						<li class="fragment">...as a job since 1997</li>
+						<li class="fragment">CFML developer since 2000 (CF4.5)</li>
+						<li class="fragment">12 years freelance full-stack developer</li>
+						<li class="fragment">4 years with AutoTrader</li>
+						<li class="fragment">Lead Product Developer at Pixl8 since 2016</li>
+						<li class="fragment">Keen cricketer</li>
+						<li class="fragment">Serial re-homer of rescue dogs</li>
+					</ul>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h3>Some history</h3>
+
+					<section>
+						<div class="r-stack">
+							<div class="fragment stack-top">
+								<p>Before smartphones</p>
+								<p class="fragment">Before online maps</p>
+								<p class="fragment">Before sat nav</p>
+								<p class="fragment">Before home computers</p>
+								<p class="fragment"><br><br>We had...</p>
+							</div>
+							<img class="fragment current-visible" src="images/rac-directions.jpeg" height="750">
+						</div>
+					</section>
+
+					<section>
+						<ul class="li-bottom-75">
+							<li class="fragment"><strong>2005:</strong> Google Maps launches</li>
+							<li class="fragment"><strong>2007:</strong> iPhone launches with Google Maps</li>
+							<li class="fragment"><strong>2010:</strong> MapBox launches</li>
+							<li class="fragment"><strong>2012:</strong> Apple Maps launches on the iPhone</li>
+							<li class="fragment"><strong>9 days later:</strong> Tim Cook makes public apology</li>
+							<li class="fragment">Apple Maps improves over the following years</li>
+							<li class="fragment"><strong>2018:</strong> MapKit JS launches on the web...</li>
+						</ul>
+					</section>
+
+				</section>
+
+
+				<section>
+					<h3>An unscientific survey</h3>
+					<p><em><small>(of the Working Code podcast Discord channel)</small></em></p>
+
+					<p class="fragment">
+						Never used maps on a website<br>
+						<strong style="color:red">2</strong>
+					</p>
+
+					<p class="fragment">
+						Google Maps<br>
+						<strong style="color:red">9</strong>
+					</p>
+
+					<p class="fragment">
+						Something else (e.g. MapBox)<br>
+						<strong style="color:red">3</strong>
+					</p>
+
+					<p class="fragment">
+						Apple MapKit JS<br>
+						<strong style="color:red">0</strong>
+					</p>
+
+				</section>
+
+				<section>
+					<h3>Why change?</h3>
+
+					<ul class="li-bottom-75">
+						<li class="fragment">
+							<strong>Pricing</strong><br>
+							More transparent fee structure than Google Maps
+						</li>
+						<li class="fragment">
+							<strong>Privacy</strong><br>
+							Cookie and tracker free (used by DuckDuckGo)
+						</li>
+						<li class="fragment">
+							<strong>Consistency</strong><br>
+							API mirrors that of MapKit as far as possible
+						</li>
+						<li class="fragment">
+							<strong>Built-in goodness</strong><br>
+							Everyday tasks made easy<br>
+							Fresh look
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Cost of Google Maps</h3>
+
+					<div class="r-stack">
+						<img class="fragment current-visible" src="images/google-price-1.png">
+						<img class="fragment current-visible" src="images/google-price-2.png">
+						<img class="fragment current-visible" src="images/google-price-3.png">
+						<img class="fragment current-visible" src="images/google-pricing.png">
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>free if you only want to embed an iframe</li>
+							<li>opaque pricing model</li>
+							<li>Maps JS API? $7 / 1000 requests</li>
+							<li>autocomplete? variable</li>
+							<li>geocoding? $5 / 1000 requests</li>
+							<li>geolocation? $5 / 1000 requests</li>
+							<li>routes? $5-$15 / 1000 requests</li>
+							<li>$200 usage per month free</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Cost of Apple MapKit JS</h3>
+
+					<p>
+						<strong>Apple Developer Program</strong>
+						<br>
+						$99 / €99 / £79 per year
+					</p>
+					<br>
+					<ul class="li-bottom-75">
+						<li class="fragment">MapKit and MapKit JS</li>
+						<li class="fragment">WeatherKit API</li>
+						<li class="fragment">Beta releases</li>
+						<li class="fragment">App publishing and distribution</li>
+						<li class="fragment">...and much more</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>MapKit usage limits</h3>
+
+					<p>The Developer Program gives you:</p>
+					<br>
+					<ul class="li-bottom-75">
+						<li class="fragment">250,000 map views</li>
+						<li class="fragment">25,000 service calls</li>
+						<li class="fragment">25,000 snapshot requests</li>
+						<li class="fragment">Spread across multiple sites</li>
+					</ul>
+
+					<br><br>
+
+					<h4 class="fragment fade-up">...not monthly, but daily!</h4>
+				</section>
+
+				<section>
+					<section>
+						<h3>Getting started</h3>
+
+						<p>The old way (up until 2 days ago):</p>
+						<br>
+						<ol class="li-bottom-75">
+							<li class="fragment">Create a Key ID</li>
+							<li class="fragment">Generate .p8 private key (keep it safe!)</li>
+							<li class="fragment">Use these, together with your Team (account) ID<br>to generate an expiring JWT</li>
+						</ol>
+					</section>
+
+					<section>
+						<img src="images/key-docs.png">
+					</section>
+
+					<section>
+						<h3>Getting started</h3>
+
+						<p>The new way</p>
+						<br>
+						<ol class="li-bottom-75">
+							<li class="fragment">Generate a token for the service you want</li>
+							<li class="fragment">...that’s it!</li>
+						</ol>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/quickstart-token.mp4" width="854" height="600"></video>
+					</section>
+
+					<section>
+						<h3>Place ID - NEW!</h3>
+						<br>
+						<ul class="li-bottom-75">
+							<li class="fragment">Place ID is a unique, unchanging reference to a feature on the map</li>
+							<li class="fragment">Search for places using the API, or use the interactive tool</li>
+							<li class="fragment">Store Place IDs in your database as an unchanging reference to a Place</li>
+							<li class="fragment">Use MapKit’s built-in functionality to display rich information about a Place</li>
+						</ul>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/quickstart-placeid.mp4" width="854" height="600"></video>
+					</section>
+
+					<section>
+						<h3>Create an embeddable map</h3>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/quickstart-create.mp4" width="854" height="600"></video>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/quickstart-iframe.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Coding more complex maps</h3>
+
+						<pre class="fragment"><code data-trim data-line-numbers="|1|3|5-14|16-20|22|24-27">
+							&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+							&lt;script src=&quot;https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js&quot;&gt;&lt;/script&gt;
+							&lt;script&gt;
+								mapkit.init( {
+									authorizationCallback: function( done ) {
+										var xhr = new XMLHttpRequest();
+										xhr.open( "GET", urlToReturnJWT );
+										xhr.addEventListener( "load", function(){
+											done( this.responseText );
+										} );
+										xhr.send();
+									}
+								} );
+								// or...
+								mapkit.init( {
+									authorizationCallback: function( done ) {
+										done( jwt );
+									}
+								} );
+
+								const map = new mapkit.Map( "map" );
+
+								map.region = new mapkit.CoordinateRegion(
+									new mapkit.Coordinate( 50.941799, -1.07179 ),
+									new mapkit.CoordinateSpan( 0.35, 0.35 )
+								);
+							&lt;/script&gt;
+						</code></pre>
+
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/01-embed.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h3>Add an annotation</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|1|2|4-7|9|11">
+							const map    = new mapkit.Map( "map" );
+							const center = new mapkit.Coordinate( 50.9417, -1.0717 );
+
+							map.region = new mapkit.CoordinateRegion(
+								center,
+								new mapkit.CoordinateSpan( 0.1, 0.1 )
+							);
+
+							const marker = new mapkit.MarkerAnnotation( center );
+
+							map.addAnnotation( marker );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/02-annotation.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Customise an annotation</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|9|10-16|18">
+							const map    = new mapkit.Map( "map" );
+							const center = new mapkit.Coordinate( 50.9417, -1.0717 );
+
+							map.region = new mapkit.CoordinateRegion(
+								center,
+								new mapkit.CoordinateSpan( 0.05, 0.05 )
+							);
+
+							const markers = [];
+							markers.push( new mapkit.MarkerAnnotation( center, {
+								color     : "#fff",
+								title     : "Hambledon Cricket Club",
+								subtitle  : "The cradle of cricket",
+								glyphText : "🏏",
+								selected  : true
+							} ) );
+
+							map.addAnnotations( markers );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/03-annotation.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Custom callouts</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|9|10-23|24-32|36|41|44">
+							const map    = new mapkit.Map( "map" );
+							const center = new mapkit.Coordinate( 50.9417, -1.0717 );
+
+							map.region   = new mapkit.CoordinateRegion(
+								center,
+								new mapkit.CoordinateSpan( 0.05, 0.05 )
+							);
+
+							const annotationCallout = {
+								calloutLeftAccessoryForAnnotation: function( annotation ) {
+									const left     = document.createElement( "div" );
+									left.className = "left-accessory-view";
+
+									const leftIcon       = document.createElement( "span" );
+									leftIcon.textContent = "\u{26C5}"; // Sun & Clouds
+									left.appendChild( leftIcon );
+
+									const leftText       = document.createElement( "div" );
+									leftText.textContent = "22\u{00b0}C";
+									left.appendChild( leftText );
+
+									return left;
+								},
+								calloutRightAccessoryForAnnotation: function( annotation ) {
+									const right       = document.createElement( "a" );
+									right.className   = "right-accessory-view";
+									right.href        = annotation.data.url;
+									right.target      = "_blank";
+									right.textContent = "\u{24D8}"; // (i) icon
+
+									return right;
+								}
+							};
+
+							const marker = new mapkit.MarkerAnnotation( center, {
+								callout   : annotationCallout,
+								color     : "#fff",
+								title     : "Hambledon Cricket Club",
+								subtitle  : "The cradle of cricket",
+								glyphText : "🏏",
+								data      : { url:"https://hambledon.cc" }
+							} );
+
+							map.addAnnotation( marker );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/04-annotation-callout.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<h3>Handling map events</h3>
+
+					<section>
+						<h4>Map display events</h4>
+						<ul>
+							<li>region-change-start</li>
+							<li>region-change-end</li>
+							<li>rotation-start</li>
+							<li>rotation-end</li>
+							<li>scroll-start</li>
+							<li>scroll-end</li>
+							<li>zoom-start</li>
+							<li>zoom-end</li>
+							<li>map-type-change</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Annotation/overlay events</h4>
+						<ul>
+							<li>deselect</li>
+							<li>deselect</li>
+							<li>drag-start</li>
+							<li>dragging</li>
+							<li>drag-end</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Drag a marker</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|3-7|14-16|17-22|23-25|27">
+							const map    = new mapkit.Map( "map" );
+							const center = new mapkit.Coordinate( 50.9417, -1.0717 );
+							const marker = new mapkit.MarkerAnnotation( center, {
+								draggable : true,
+								selected  : true,
+								title     : "DRAG ME!"
+							} );
+
+							map.region = new mapkit.CoordinateRegion(
+								center,
+								new mapkit.CoordinateSpan( 0.1, 0.1 )
+							);
+
+							marker.addEventListener( "drag-start", function( event ) {
+								event.target.title = "";
+							} );
+							marker.addEventListener( "dragging", function( event ) {
+								document.querySelector( "#lat" ).textContent =
+									event.coordinate.latitude;
+								document.querySelector( "#lng" ).textContent =
+									event.coordinate.longitude;
+							} );
+							marker.addEventListener( "drag-end", function( event ) {
+								map.setCenterAnimated( event.target.coordinate );
+							} );
+
+							map.addAnnotation( marker );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/05-annotation-drag.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Interaction with the web page</h3>
+						<pre><code class="language-html" data-trim data-line-numbers="|1|4-11|12-21|24-31|32-41">
+							&lt;mapkit-map tokenurl=&quot;https://hambledon.cc/mapkit/getToken/&quot;&gt;
+								&lt;div class=&quot;map-locations&quot;&gt;
+
+									&lt;address id=&quot;venue-C627B282-47B7-4740-9937E8D177EA0DE2&quot;
+											class=&quot;map-location content-widget&quot;
+											data-lat=&quot;50.941799&quot;
+											data-lng=&quot;-1.07179&quot;
+											data-glyph-text=&quot;&#x1F3CF;&quot;
+											data-color=&quot;#49678b&quot;
+											data-title=&quot;Ridge Meadow&quot;
+											data-subtitle=&quot;&quot;&gt;
+										&lt;h2&gt;Ridge Meadow&lt;/h2&gt;
+										&lt;p&gt;
+											&lt;span property=&quot;address&quot; vocab=&quot;http://schema.org/&quot; typeof=&quot;PostalAddress&quot;&gt;
+												&lt;span property=&quot;streetAddress&quot;&gt;Brook Lane&lt;br&gt;Hambledon&lt;/span&gt;&lt;br&gt;
+												&lt;span property=&quot;addressLocality&quot;&gt;Waterlooville&lt;/span&gt;&lt;br&gt;
+												&lt;span property=&quot;addressRegion&quot;&gt;Hampshire&lt;/span&gt;
+												&lt;span property=&quot;postalCode&quot;&gt;PO7 4TH&lt;/span&gt;
+												&lt;meta property=&quot;addressCountry&quot; content=&quot;UK&quot;&gt;
+											&lt;/span&gt;
+										&lt;/p&gt;
+									&lt;/address&gt;
+
+									&lt;address id=&quot;venue-B6E2FB5B-3423-4E01-8FB5AE8C615D48A3&quot;
+											class=&quot;map-location content-widget&quot;
+											data-lat=&quot;50.946201&quot;
+											data-lng=&quot;-1.03826&quot;
+											data-glyph-text=&quot;&#x1F3CF;&quot;
+											data-color=&quot;#49678b&quot;
+											data-title=&quot;Broadhalfpenny Down&quot;
+											data-subtitle=&quot;&quot;&gt;
+										&lt;h2&gt;Broadhalfpenny Down&lt;/h2&gt;
+										&lt;p&gt;
+											&lt;span property=&quot;address&quot; vocab=&quot;http://schema.org/&quot; typeof=&quot;PostalAddress&quot;&gt;
+												&lt;span property=&quot;streetAddress&quot;&gt;Hyden Farm Lane&lt;br&gt;Clanfield&lt;/span&gt;&lt;br&gt;
+												&lt;span property=&quot;addressLocality&quot;&gt;Waterlooville&lt;/span&gt;&lt;br&gt;
+												&lt;span property=&quot;addressRegion&quot;&gt;Hampshire&lt;/span&gt;
+												&lt;span property=&quot;postalCode&quot;&gt;PO8 0UB&lt;/span&gt;
+												&lt;meta property=&quot;addressCountry&quot; content=&quot;UK&quot;&gt;
+											&lt;/span&gt;
+										&lt;/p&gt;
+									&lt;/address&gt;
+
+								&lt;/div&gt;
+							&lt;/mapkit-map&gt;
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/click-events-no-js.mp4" width="705" height="576"></video>
+					</section>
+
+					<section>
+						<h3>Map added via Web Component</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|12|13|15-21|23|24-38|40-42|44-47|50-54|57-61|62-65|66|69-81|84">
+							class MapkitMap extends HTMLElement {
+								constructor () {
+									super();
+
+									this.annotations = [];
+									this.latDelta    = 0;
+									this.lngDelta    = 0;
+									this.center      = null;
+								}
+
+								connectedCallback() {
+									const tokenUrl   = this.getAttribute( "tokenurl" );
+									const addressEls = this.querySelectorAll( ".map-location" );
+
+									mapkit.init( {
+										authorizationCallback : function( done ) {
+											fetch( tokenUrl )
+												.then( res => res.text() )
+												.then( done );
+										}
+									} );
+
+									addressEls.forEach( function( addressEl, i ) {
+										const lat   = parseFloat( addressEl.getAttribute( "data-lat" ) ),
+											lng       = parseFloat( addressEl.getAttribute( "data-lng" ) ),
+											color     = addressEl.getAttribute( "data-color" ),
+											title     = addressEl.getAttribute( "data-title" ),
+											glyphText = addressEl.getAttribute( "data-glyph-text" ),
+											subtitle  = addressEl.getAttribute( "data-subtitle" ),
+											coord     = new mapkit.Coordinate( lat, lng ),
+											marker    = new mapkit.MarkerAnnotation( coord, {
+												color     : color,
+												title     : title,
+												subtitle  : subtitle,
+												glyphText : glyphText,
+												selected  : i==0,
+												data      : { element:addressEl }
+											} );
+
+										this.center = this.center || coord;
+										this.setLatLngDelta( coord );
+										this.annotations.push( marker );
+
+										addressEl.addEventListener( "click", function( e ){
+											if ( !map ) return;
+											map.selectedAnnotation = marker;
+										} );
+									}, this );
+
+									const map = new mapkit.Map( this.getMapDiv(), {
+										region : new mapkit.CoordinateRegion(
+											this.center,
+											new mapkit.CoordinateSpan( this.lngDelta, this.latDelta )
+										)
+									} );
+
+									map.addEventListener( "select", function( event ) {
+										if ( !event.annotation ) return;
+										map.setCenterAnimated( event.annotation.coordinate );
+										event.annotation.data.element.classList.add( "selected-location" );
+									} );
+									map.addEventListener( "deselect", function( event ) {
+										if ( !event.annotation ) return;
+										event.annotation.data.element.classList.remove( "selected-location" );
+									} );
+									map.addAnnotations( this.annotations );
+								}
+
+								setLatLngDelta( coordinate ) {
+									this.latDelta = Math.max( this.latDelta, Math.abs( this.center.latitude - coordinate.latitude ) );
+									this.lngDelta = Math.max( this.lngDelta, Math.abs( this.center.longitude - coordinate.longitude ) );
+								}
+								getMapDiv() {
+									let mapDivEl = this.querySelector( ".map-container" );
+									if ( !mapDivEl ) {
+										mapDivEl = document.createElement( "div" );
+										mapDivEl.classList.add( "map-container" );
+										this.append( mapDivEl );
+									}
+									return mapDivEl;
+								}
+							}
+
+							customElements.define( "mapkit-map", MapkitMap );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/click-events.mp4" width="705" height="576"></video>
+					</section>
+				</section>
+
+
+
+				<section>
+					<h3>GeoJSON</h3>
+					<pre><code class="language-json" data-trim data-line-numbers="|2-3|4-16|17-29|30">
+						{
+							"type": "FeatureCollection",
+							"features": [
+								{
+									"properties": {
+										"title": "Barripper"
+									},
+									"type": "Feature",
+									"geometry": {
+										"coordinates": [
+											-5.31378,
+											50.1934
+										],
+										"type": "Point"
+									}
+								},
+								{
+									"properties": {
+										"title": "Beacon"
+									},
+									"type": "Feature",
+									"geometry": {
+										"coordinates": [
+											-5.287,
+											50.206
+										],
+										"type": "Point"
+									}
+								},
+								{ ... }
+							]
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<section>
+						<h3>GeoJSON: basic display</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|3-10|4-6|7-9|12">
+							const map = new mapkit.Map( "map" );
+
+							const geoJSONDelegate = {
+								geoJSONDidComplete : function( itemCollection ) {
+									map.showItems( itemCollection );
+								},
+								geoJSONDidError : function( err ) {
+									console.error( err );
+								}
+							};
+
+							mapkit.importGeoJSON( "./geojson.json", geoJSONDelegate );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/06-geojson-1.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>GeoJSON: customise points</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|4-12">
+							const map = new mapkit.Map( "map" );
+
+							const geoJSONDelegate = {
+								itemForFeature : function( item, geoJSON ) {
+									if ( geoJSON.geometry.type == "Point" ) {
+										item.title     = geoJSON.properties.title;
+										item.color     = geoJSON.properties.color     || "yellow";
+										item.glyphText = geoJSON.properties.glyphText || "🏏";
+										item.data      = geoJSON.properties;
+									}
+									return item;
+								},
+								geoJSONDidComplete : function( itemCollection ) {
+									map.showItems( itemCollection );
+								},
+								geoJSONDidError : function( err ) {
+									console.error( err );
+								}
+							};
+
+							mapkit.importGeoJSON( "./geojson.json", geoJSONDelegate );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/06-geojson-2.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Clusters</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|10">
+							const map = new mapkit.Map( "map" );
+
+							const geoJSONDelegate = {
+								itemForFeature : function( item, geoJSON ) {
+									if ( geoJSON.geometry.type == "Point" ) {
+										item.title     = geoJSON.properties.title;
+										item.color     = geoJSON.properties.color     || "yellow";
+										item.glyphText = geoJSON.properties.glyphText || "🏏";
+										item.data      = geoJSON.properties;
+										item.clusteringIdentifier = "myCluster";
+									}
+									return item;
+								},
+								geoJSONDidComplete : function( itemCollection ) {
+									map.showItems( itemCollection );
+								},
+								geoJSONDidError : function( err ) {
+									console.error( err );
+								}
+							};
+
+							mapkit.importGeoJSON( "./geojson.json", geoJSONDelegate );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/06-geojson-3.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Customise clusters</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|10|16-21">
+							const map = new mapkit.Map( "map" );
+
+							const geoJSONDelegate = {
+								itemForFeature : function( item, geoJSON ) {
+									if ( geoJSON.geometry.type == "Point" ) {
+										item.title     = geoJSON.properties.title;
+										item.color     = geoJSON.properties.color     || "yellow";
+										item.glyphText = geoJSON.properties.glyphText || "🏏";
+										item.data      = geoJSON.properties;
+										item.animates  = false;
+										item.clusteringIdentifier = "myCluster";
+									}
+									return item;
+								},
+								geoJSONDidComplete : function( itemCollection ) {
+									map.annotationForCluster = function( clusterAnnotation ) {
+										clusterAnnotation.color    = "#009900";
+										clusterAnnotation.title    =
+											`${clusterAnnotation.memberAnnotations.length} clubs`;
+										clusterAnnotation.subtitle = "";
+									};
+									map.showItems( itemCollection );
+								},
+								geoJSONDidError : function( err ) {
+									console.error( err );
+								}
+							};
+
+							mapkit.importGeoJSON( "./geojson.json", geoJSONDelegate );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/06-geojson-4.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<h3>API functionality</h3>
+
+					<p>All available via MapKit JS or Server API</p>
+
+					<ul>
+						<li class="fragment">Geocode</li>
+						<li class="fragment">Reverse Geocode</li>
+						<li class="fragment">Search</li>
+						<li class="fragment">Search Autocomplete</li>
+						<li class="fragment">Places</li>
+						<li class="fragment">Directions</li>
+						<li class="fragment">ETA</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h3>Directions API</h3>
+						<pre><code class="language-js" data-trim data-line-numbers="|2|9|10-12|13|15-22|24-34|35-44|46-49">
+							const map        = new mapkit.Map( "map" );
+							const directions = new mapkit.Directions();
+
+							map.region = new mapkit.CoordinateRegion(
+								new mapkit.Coordinate( 48.1548813, 11.4594368 ),
+								new mapkit.CoordinateSpan( 0.4, 0.4 )
+							);
+
+							directions.route( {
+								origin        : "Munich Airport"
+								destination   : "Marriott Hotel Freising",
+								transportType : mapkit.Directions.Transport.Automobile,
+							}, function( error, data ){
+								const markers  = [];
+								const polyline = data.routes[ 0 ].polyline;
+
+								polyline.style = new mapkit.Style( {
+									lineWidth     : 10,
+									lineDash      : [ 20 ],
+									strokeColor   : "red",
+									strokeOpacity : 0.5
+								} );
+
+								markers.push( new mapkit.MarkerAnnotation(
+									new mapkit.Coordinate(
+										data.origin.coordinate.latitude,
+										data.origin.coordinate.longitude
+									),
+									{
+										title     : data.origin.name,
+										glyphText : "1",
+										color     : "green"
+									}
+								) );
+								markers.push( new mapkit.MarkerAnnotation(
+									new mapkit.Coordinate(
+										data.destination.coordinate.latitude,
+										data.destination.coordinate.longitude
+									),
+									{
+										title     : data.destination.name,
+										glyphText : "2"
+									}
+								) );
+
+								map.showItems(
+									[ polyline, markers ],
+									{ animate: true }
+								);
+							} );
+						</code></pre>
+					</section>
+
+					<section class="center">
+						<video data-autoplay data-src="./video/07-directions.mp4" width="749" height="599"></video>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Using the Server APIs</h3>
+
+						<div class="fragment">
+							<p>1. Get an access token:</p>
+
+							<pre><code class="language-text" data-trim>
+								GET https://maps-api.apple.com/v1/token
+
+								Authorization: Bearer &lt;your_jwt&gt;
+							</code></pre>
+						</div>
+
+						<div class="fragment">
+							<p>2. Use the token in your request:</p>
+
+							<pre><code class="language-text" data-trim>
+								GET https://maps-api.apple.com/v1/search?q=Marriott%20Hotel%20Freising
+
+								Authorization: Bearer &lt;access_token&gt;
+							</code></pre>
+						</div>
+					</section>
+
+					<section>
+						<h3>Search API response</h3>
+
+						<pre><code class="language-json" data-trim data-line-numbers="|2-7|8-9|10-13|14-19|20-25|26-37|38-40">
+							{
+								"displayMapRegion": {
+									"southLatitude": 48.39831632561982,
+									"westLongitude": 11.734098745509982,
+									"northLatitude": 48.41000342275947,
+									"eastLongitude": 11.751689510419965
+								},
+								"results": [
+									{
+										"coordinate": {
+											"latitude": 48.4041566,
+											"longitude": 11.7426789
+										},
+										"displayMapRegion": {
+											"southLatitude": 48.3996683,
+											"westLongitude": 11.7361283,
+											"northLatitude": 48.4086515,
+											"eastLongitude": 11.7496597
+										},
+										"name": "Munich Airport Marriott Hotel",
+										"formattedAddressLines": [
+											"Alois-Steinecker-Straße 20",
+											"85354 Freising",
+											"Germany"
+										],
+										"structuredAddress": {
+											"administrativeArea": "Bavaria",
+											"locality": "Freising",
+											"postCode": "85354",
+											"subLocality": "Freising",
+											"thoroughfare": "Alois-Steinecker-Straße",
+											"subThoroughfare": "20",
+											"fullThoroughfare": "Alois-Steinecker-Straße 20",
+											"dependentLocalities": [
+												"Freising"
+											]
+										},
+										"country": "Germany",
+										"countryCode": "DE",
+										"poiCategory": "Hotel"
+									}
+								]
+							}
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<h3>Snapshots API</h3>
+
+					<section>
+						<ul class="li-bottom-75">
+							<li class="fragment">Generate a static map image</li>
+							<li class="fragment">Add markers, lines etc</li>
+							<li class="fragment">Max 600px x 600px</li>
+							<li class="fragment">...but also set up to 3x pixel scale</li>
+						</ul>
+					</section>
+
+					<section>
+
+						<pre><code class="language-text" data-trim data-line-numbers="|1|2|3|4|5|6|7|8|9">
+							https://snapshot.apple-mapkit.com/api/v1/snapshot
+								?center=48.4036796,11.7411341
+								&annotations=[{"point":"48.4036796,11.7411341", "color":"449944"}]
+								&z=14
+								&colorScheme=dark
+								&scale=3
+								&width=600
+								&height=600
+								&token=eyJraWQiOiI3QjI2SzZZN.....
+						</code></pre>
+					</section>
+
+					<section>
+						<div class="r-stack">
+							<img class="" src="images/snapshot-dark.png" height="500">
+							<img class="fragment current-visible" src="images/snapshot-light.png" height="500">
+							<img class="fragment current-visible" src="images/snapshot-muted.png" height="500">
+							<img class="fragment current-visible" src="images/snapshot-satellite.png" height="500">
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<h3>There is much more!</h3>
+
+					<p>Check out the docs, examples and forums:</p>
+
+					<p>
+						<br>
+						MapKit JS overview<br>
+						<a href="https://developer.apple.com/maps/web/">https://developer.apple.com/maps/web/</a>
+					</p>
+					<p>
+						MapKit resources<br>
+						<a href="https://developer.apple.com/maps/resources/">https://developer.apple.com/maps/resources/</a>
+					</p>
+					<p>
+						Snapshot API reference<br>
+						<a href="https://developer.apple.com/documentation/snapshots/">https://developer.apple.com/documentation/snapshots/</a>
+					</p>
+				</section>
+
+
+				<section>
+					<h3>Contact me</h3>
+
+					<p>
+						<br>
+						Mastodon<br>
+						<a href="https://mastodonapp.uk/@sebduggan">https://mastodonapp.uk/@sebduggan</a>
+					</p>
+					<p>
+						Email<br>
+						<a href="mailto:seb@sebduggan.com">seb@sebduggan.com</a>
+					</p>
+				</section>
+
+			</section>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				center: false,
+				progress: false,
+				controls: false,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
